@@ -71,6 +71,7 @@ public:
     static const string INITIATE_CLIENT;
     static const string MERGE_FILES;
     static const string INITIATE_AGG;
+    static const string TRAIN;
 };
 
 const int INSTANCE_DATA_LENGTH = 300;

@@ -40,7 +40,7 @@ logging.basicConfig(
     level=logging.INFO, 
     format='%(asctime)s : [%(levelname)s]  %(message)s',
     handlers=[
-        logging.FileHandler(f'client_{partition_id}.log'),
+        logging.FileHandler('client_{partition_id}.log'),
         logging.StreamHandler(sys.stdout)
     ]
 )
@@ -94,7 +94,7 @@ class Client:
         data = {"CLIENT_ID":self.partition_id,"WEIGHTS":weights,"NUM_EXAMPLES":self.graph_params[0]}
 
         data = pickle.dumps(data)
-        data = bytes(f"{len(data):<{self.HEADER_LENGTH}}", 'utf-8') + data
+        # data = bytes(f"{len(data):<{self.HEADER_LENGTH}}", 'utf-8') + data
         self.client_socket.sendall(data)
 
 

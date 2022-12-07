@@ -1970,7 +1970,7 @@ void JasmineGraphServer::initiateCommunication(std::string graphID, std::string 
         if (i==0) {
 
             workerThreads[threadID] = std::thread(initiateServer,"localhost", serverPort, 
-                                                    serverDataPort,trainingArgs,fl_clients, to_string(i));
+                                                    serverDataPort, trainingArgs, fl_clients, to_string(i));
             threadID++;
         }
 
@@ -2722,7 +2722,7 @@ bool JasmineGraphServer::sendTrainCommand(std::string host, int port, std::strin
     }
 
     bzero(data, FED_DATA_LENGTH);
-    write(sockfd, JasmineGraphInstanceProtocol::TRAIN.c_str(), JasmineGraphInstanceProtocol::TRAIN.size());
+//    write(sockfd, JasmineGraphInstanceProtocol::TRAIN.c_str(), JasmineGraphInstanceProtocol::TRAIN.size());
     bzero(data, FED_DATA_LENGTH);
     read(sockfd, data, FED_DATA_LENGTH);
     std::string command = trainingArgs;

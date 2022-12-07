@@ -1,0 +1,16 @@
+/opt/clion-2022.2.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/opt/clion-2022.2.1/bin/ninja/linux/ninja -G Ninja -S /home/chalindu/ubuntu/software/jasminegraph -B /home/chalindu/ubuntu/software/jasminegraph
+-- Configuring done
+CMake Warning at CMakeLists.txt:8 (add_executable):
+  Cannot generate a safe runtime search path for target JasmineGraph because
+  there is a cycle in the constraint graph:
+
+    dir 0 is [/usr/local/lib]
+      dir 1 must precede it due to runtime library [libmetis.so]
+    dir 1 is [/home/chalindu/local/lib]
+      dir 0 must precede it due to runtime library [libmetis.so]
+
+  Some of these libraries may not be found correctly.
+
+
+-- Generating done
+-- Build files have been written to: /home/chalindu/ubuntu/software/jasminegraph

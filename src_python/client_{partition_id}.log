@@ -1,0 +1,16 @@
+2022-12-05 16:28:43,738 : [WARNING]  ####################################### New Training Session #######################################
+2022-12-05 16:28:43,738 : [WARNING]  ####################################### New Training Session #######################################
+2022-12-05 16:28:43,738 : [INFO]  Client started, graph ID 2, partition ID 0, epochs 4
+2022-12-05 16:28:43,738 : [INFO]  Client started, graph ID 2, partition ID 1, epochs 4
+2022-12-05 17:11:29,321 : [WARNING]  ####################################### New Training Session #######################################
+2022-12-05 17:11:29,321 : [WARNING]  ####################################### New Training Session #######################################
+2022-12-05 17:11:29,322 : [INFO]  Client started, graph ID 1, partition ID 1, epochs 4
+2022-12-05 17:11:29,322 : [INFO]  Client started, graph ID 1, partition ID 0, epochs 4
+2022-12-05 17:20:54,395 : [WARNING]  ####################################### New Training Session #######################################
+2022-12-05 17:20:54,395 : [INFO]  Client started, graph ID 1, partition ID 1, epochs 4
+2022-12-05 17:20:54,395 : [WARNING]  ####################################### New Training Session #######################################
+2022-12-05 17:20:54,396 : [INFO]  Client started, graph ID 1, partition ID 0, epochs 4
+2022-12-05 17:36:35,083 : [WARNING]  ####################################### New Training Session #######################################
+2022-12-05 17:36:35,084 : [INFO]  Client started, graph ID 1, partition ID 1, epochs 4
+2022-12-05 17:36:35,084 : [WARNING]  ####################################### New Training Session #######################################
+2022-12-05 17:36:35,084 : [INFO]  Client started, graph ID 1, partition ID 0, epochs 4

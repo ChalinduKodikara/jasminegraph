@@ -119,7 +119,7 @@ class Server:
         data = {"STOP_FLAG":self.stop_flag,"WEIGHTS":weights}
 
         data = pickle.dumps(data)
-        data = bytes(f"{len(data):<{self.HEADER_LENGTH}}", 'utf-8') + data
+        # data = bytes(f'{len(data):<{self.HEADER_LENGTH}}', 'utf-8') + data
 
         client_socket.sendall(data)
 
@@ -223,7 +223,7 @@ if __name__ == "__main__":
     args = dict(zip(arg_names, sys.argv[1:]))
 
     logging.warning('####################################### New Training Session #######################################')
-    logging.info('Server started , graph ID %s, number of clients %s, number of rounds %s',args['graph_id'],args['num_clients'],args['num_rounds'])
+    logging.info('Server started , graph ID %s, number of clients %s, number of rounds %s', args['graph_id'],args['num_clients'],args['num_rounds'])
 
     if 'IP' not in args.keys()  or args['IP'] == 'localhost':
         args['IP'] = socket.gethostname()
