@@ -70,3 +70,20 @@ build/
 
 # Log files
 logs/
+
+# Performance DB Caches
+performancedb/jasminegraph_performance.db-*
+src_python/client_*
+src_python/client_logs_0.txt
+src_python/merge_*
+src_python/server*
+CMakeFiles/
+.cmake
+.ninja_deps
+.ninja_log
+build.ninja
+cmake_install.cmake
+CMakeCache.txt
+JasmineGraph
+src_python/supervised.log
+src_python/.idea

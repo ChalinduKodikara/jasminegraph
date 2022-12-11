@@ -613,8 +613,7 @@ void *frontendservicesesion(std::string masterIP, int connFd, SQLiteDBInterface 
             std::string federatedEnabled = utils.getJasmineGraphProperty("org.jasminegraph.federated.enabled");          
             string message = "Available main flags:\n";
             write(connFd, message.c_str(), message.size());
-            string flags =
-            Conts::FLAGS::GRAPH_ID;
+            string flags = Conts::FLAGS::GRAPH_ID;
             write(connFd, flags.c_str(), flags.size());
             write(connFd, "\n", 2);
             message = "Send --<flag1> <value1> \n";

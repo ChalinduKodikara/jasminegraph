@@ -1,2 +1,0 @@
-2022-12-05 17:36:35,083 : [WARNING]  ####################################### New Training Session #######################################
-2022-12-05 17:36:35,084 : [INFO]  Client started, graph ID 1, partition ID 1, epochs 4

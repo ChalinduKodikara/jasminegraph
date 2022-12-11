@@ -1967,5 +1967,5 @@ void JasmineGraphInstanceService::mergeFiles(string trainData){
                                 + utils.getJasmineGraphProperty("org.jasminegraph.fl.dataDir") + " " + graphID + " " + partitionID + " > merge_logs" 
                                 + partitionID +".txt";
 
-    popen(command.c_str(), "r");    
+    popen(command.c_str(), "r");
 }

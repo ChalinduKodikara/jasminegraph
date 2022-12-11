@@ -22,6 +22,7 @@ import logging
 from timeit import default_timer as timer
 import gc
 import math
+from io import BytesIO
 
 logging.basicConfig(
     level=logging.INFO, 
@@ -224,7 +225,7 @@ if __name__ == "__main__":
 
     logging.warning('####################################### New Training Session #######################################')
     logging.info('Server started , graph ID %s, number of clients %s, number of rounds %s', args['graph_id'],args['num_clients'],args['num_rounds'])
-
+# pd.read_csv('/var/tmp/jasminegraph-localstore/1_attributes_0', sep='\s+', lineterminator='\n',header=None)
     if 'IP' not in args.keys()  or args['IP'] == 'localhost':
         args['IP'] = socket.gethostname()
 

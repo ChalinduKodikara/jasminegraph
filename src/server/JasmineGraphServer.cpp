@@ -1936,7 +1936,7 @@ void JasmineGraphServer::initiateFiles(std::string graphID, std::string training
             workerThreads[count] = std::thread(initiateTrain, j->first, workerPartition.port, workerPartition.dataPort,
                                                 trainingArgs + " " + *k, iterationOfPart, partitionCount);
             count++;
-            sleep(3);
+            sleep(5);
         }
     }
 
