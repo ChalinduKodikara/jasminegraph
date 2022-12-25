@@ -29,20 +29,26 @@ from stellargraph.data import EdgeSplitter
 from stellargraph.mapper import GraphSAGELinkGenerator
 from stellargraph.layer import GraphSAGE, HinSAGE, link_classification
 from stellargraph import globalvar
-from stellargraph import datasets
-
+# from stellargraph import datasets
+# import os
+# os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 import tensorflow as tf
 from tensorflow import keras
+# import keras
 import random as python_random
 
 
 from sklearn import preprocessing, feature_extraction, model_selection
-import os
+
 import numpy as np
 import pandas as pd
 from timeit import default_timer as timer
 
-tf.random.set_seed(42)
+
+
+
+tf.random.set_seed(42) # module 'tensorflow_core.compat.v1.random' has no attribute 'set_seed'Comment
+# tf.random.set_random_seed(42)
 np.random.seed(42)
 python_random.seed(42)
 
@@ -120,6 +126,8 @@ class Model:
         return edge_ids_train.shape[0],edge_ids_test.shape[0]
 
     def set_weights(self,weights):
+        logging.info(weights)
+        logging.info('Line 130')
         self.model.set_weights(weights)
 
     def get_weights(self):

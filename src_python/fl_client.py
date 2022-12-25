@@ -20,6 +20,8 @@ import pandas as pd
 import logging
 from timeit import default_timer as timer
 import time
+import os
+
 
 arg_names = [
     'path_weights',
@@ -94,7 +96,7 @@ class Client:
         data = {"CLIENT_ID":self.partition_id,"WEIGHTS":weights,"NUM_EXAMPLES":self.graph_params[0]}
 
         data = pickle.dumps(data)
-        # data = bytes(f"{len(data):<{self.HEADER_LENGTH}}", 'utf-8') + data
+        data = bytes(f"{len(data):<{self.HEADER_LENGTH}}", 'utf-8') + data
         self.client_socket.sendall(data)
 
 
@@ -119,9 +121,7 @@ class Client:
 
                 if len(full_msg) == message_length:
                     break
-            
             data = pickle.loads(full_msg)
-
             self.STOP_FLAG = data["STOP_FLAG"]
 
             return data["WEIGHTS"]
@@ -132,6 +132,7 @@ class Client:
 
     def fetch_model(self):
         data = self.receive()
+        # logging.info(data)
         self.MODEL.set_weights(data)
 
     def train(self):
@@ -161,7 +162,7 @@ class Client:
                     f1_test = "undefined"
                     
                 logging.info('_____________________________________________________ Final model evalution ____________________________________________________________')
-                logging.info('Finel model (v%s) fetched',self.rounds)
+                logging.info('Final model (v%s) fetched',self.rounds)
                 logging.info('Training set : loss - %s, accuracy - %s, recall - %s, AUC - %s, F1 - %s, precision - %s', eval[0][0], eval[0][1],eval[0][2],eval[0][3],f1_train,eval[0][4])
                 logging.info('Testing set : loss - %s, accuracy - %s, recall - %s, AUC - %s, F1 - %s, precision - %s',  eval[1][0], eval[1][1],eval[1][2],eval[1][3],f1_test,eval[1][4])
                 
@@ -196,7 +197,7 @@ if __name__ == "__main__":
 
     from models.supervised import Model
 
-    if 'IP' not in args.keys()  or args['IP'] == 'localhost':
+    if 'IP' not in args.keys() or args['IP'] == 'localhost':
         args['IP'] = socket.gethostname()
 
     if 'PORT' not in args.keys():
@@ -217,20 +218,15 @@ if __name__ == "__main__":
     logging.info('Model initialized')
     model = Model(nodes,edges)
     num_train_ex,num_test_ex = model.initialize()
-
     graph_params = (num_train_ex,num_test_ex)
-
     logging.info('Number of training examples - %s, Number of testing examples %s',num_train_ex,num_test_ex)
 
     client = Client(model,graph_params,weights_path=args['path_weights'],graph_id=args['graph_id'],partition_id=args['partition_id'],epochs = int(args['epochs']) ,IP=args['IP'],PORT=int(args['PORT']))
 
-
     logging.info('Federated training started!')
-
     start = timer()
     client.run()
     end = timer()
-
     elapsed_time = end -start
     logging.info('Federated training done!')
     logging.info('Training report : Elapsed time %s seconds, graph ID %s, partition ID %s, epochs %s',elapsed_time,args['graph_id'],args['partition_id'],args['epochs'])

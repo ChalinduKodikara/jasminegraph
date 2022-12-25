@@ -23,6 +23,8 @@ from timeit import default_timer as timer
 import gc
 import math
 from io import BytesIO
+import os
+
 
 logging.basicConfig(
     level=logging.INFO, 
@@ -51,7 +53,7 @@ class Server:
         self.graph_id = graph_id
 
         # Global model
-        self.GLOBAL_WEIGHTS = MODEL
+        self.GLOBAL_WEIGHTS = MODEL.get_weights()
 
         self.global_modlel_ready = False
 
@@ -101,7 +103,6 @@ class Server:
 
             for soc in self.sockets_list[1:]:
                 self.send_model(soc)
-            
             logging.info("___________________________________________________ Training round %s done ______________________________________________________", self.training_cycles)
         
 
@@ -120,7 +121,7 @@ class Server:
         data = {"STOP_FLAG":self.stop_flag,"WEIGHTS":weights}
 
         data = pickle.dumps(data)
-        # data = bytes(f'{len(data):<{self.HEADER_LENGTH}}', 'utf-8') + data
+        data = bytes(f'{len(data):<{self.HEADER_LENGTH}}', 'utf-8') + data
 
         client_socket.sendall(data)
 
@@ -184,7 +185,6 @@ class Server:
                     self.send_model(client_socket)
 
                 else:
-
                     message = self.receive(notified_socket)
 
                     if message is False:
@@ -225,8 +225,8 @@ if __name__ == "__main__":
 
     logging.warning('####################################### New Training Session #######################################')
     logging.info('Server started , graph ID %s, number of clients %s, number of rounds %s', args['graph_id'],args['num_clients'],args['num_rounds'])
-# pd.read_csv('/var/tmp/jasminegraph-localstore/1_attributes_0', sep='\s+', lineterminator='\n',header=None)
-    if 'IP' not in args.keys()  or args['IP'] == 'localhost':
+
+    if 'IP' not in args.keys() or args['IP'] == 'localhost':
         args['IP'] = socket.gethostname()
 
     if 'PORT' not in args.keys():
@@ -240,23 +240,19 @@ if __name__ == "__main__":
    
     model = Model(nodes,edges)
     model.initialize()
-    model_weights = model.get_weights()
+    # model_weights = model.get_weights()
 
     logging.info('Model initialized')
     
-    server = Server(model_weights,ROUNDS=int(args['num_rounds']),weights_path=args['path_weights'],graph_id=args['graph_id'],MAX_CONN=int(args['num_clients']),IP=args['IP'],PORT=int(args['PORT']))
-
+    server = Server(model,ROUNDS=int(args['num_rounds']),weights_path=args['path_weights'],graph_id=args['graph_id'],MAX_CONN=int(args['num_clients']),IP=args['IP'],PORT=int(args['PORT']))
     del nodes
     del edges
     del model
     gc.collect()
-    
     logging.info('Federated training started!')
-
     start = timer()
     server.run()
     end = timer()
-
     elapsed_time = end -start
     logging.info('Federated training done!')
     logging.info('Training report : Elapsed time %s seconds, graph ID %s, number of clients %s, number of rounds %s',elapsed_time,args['graph_id'],args['num_clients'],args['num_rounds'])

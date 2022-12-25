@@ -1,0 +1,12 @@
+2022-12-18 17:40:12,324 : [INFO]  Generating grammar tables from /usr/lib/python3.7/lib2to3/Grammar.txt
+2022-12-18 17:40:12,352 : [INFO]  Generating grammar tables from /usr/lib/python3.7/lib2to3/PatternGrammar.txt
+2022-12-18 17:40:16,492 : [WARNING]  From /home/chalindu/ubuntu/software/jasminegraph/src_python/models/supervised.py:46: The name tf.random.set_random_seed is deprecated. Please use tf.compat.v1.random.set_random_seed instead.
+
+2022-12-18 17:40:20,860 : [INFO]  Generating grammar tables from /usr/lib/python3.7/lib2to3/Grammar.txt
+2022-12-18 17:40:20,874 : [INFO]  Generating grammar tables from /usr/lib/python3.7/lib2to3/PatternGrammar.txt
+2022-12-18 17:40:22,863 : [WARNING]  From /home/chalindu/ubuntu/software/jasminegraph/src_python/models/supervised.py:46: The name tf.random.set_random_seed is deprecated. Please use tf.compat.v1.random.set_random_seed instead.
+
+2022-12-18 18:42:45,623 : [INFO]  Generating grammar tables from /usr/lib/python3.7/lib2to3/Grammar.txt
+2022-12-18 18:42:45,650 : [INFO]  Generating grammar tables from /usr/lib/python3.7/lib2to3/PatternGrammar.txt
+2022-12-18 18:42:49,874 : [WARNING]  From /home/chalindu/ubuntu/software/jasminegraph/src_python/models/supervised.py:46: The name tf.random.set_random_seed is deprecated. Please use tf.compat.v1.random.set_random_seed instead.
+

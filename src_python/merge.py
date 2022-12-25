@@ -45,8 +45,8 @@ edges_centralstore.columns = ["source","target"]
 # Reducing memory consumption
 edges_centralstore = edges_centralstore.astype({"source":"uint32","target":"uint32"})
 edges_localstore = edges_localstore.astype({"source":"uint32","target":"uint32"})
-# nodes_localstore = nodes_localstore.astype("float32")
-# nodes_centralstore = nodes_centralstore.astype("float32")
+nodes_localstore = nodes_localstore.astype("float32")
+nodes_centralstore = nodes_centralstore.astype("float32")
 
 nodes = pd.concat([nodes_localstore,nodes_centralstore])
 nodes = nodes.loc[~nodes.index.duplicated(keep='first')]

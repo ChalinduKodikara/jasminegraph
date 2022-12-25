@@ -16,14 +16,20 @@ from stellargraph.data import UniformRandomWalk, UnsupervisedSampler
 from stellargraph.mapper import GraphSAGELinkGenerator, GraphSAGENodeGenerator
 from stellargraph.layer import GraphSAGE, link_classification
 from stellargraph import globalvar
-from stellargraph import datasets
+# from stellargraph import datasets
 
+import tensorflow as tf
 from tensorflow import keras
 from sklearn import preprocessing, feature_extraction, model_selection
 import os
 import sys
 import numpy as np
 import pandas as pd
+
+tf.random.set_seed(42) # module 'tensorflow_core.compat.v1.random' has no attribute 'set_seed'Comment
+# tf.random.set_random_seed(42)
+np.random.seed(42)
+
 
 class Model:
 
@@ -59,14 +65,14 @@ class Model:
 
         self.graph = sg.StellarGraph(nodes=self.nodes_df,edges=self.edges_df)
         self.nodes = list(self.graph.nodes())
-
+        print("Line 62")
         del self.nodes_df
         del self.edges_df
 
         unsupervised_samples = UnsupervisedSampler(
             self.graph, nodes=self.nodes, length=length, number_of_walks=num_walks
         )
-
+        print("Line 69")
         # Train iterators
         train_gen = GraphSAGELinkGenerator(self.graph, batch_size, num_samples)
         self.train_flow = train_gen.flow(unsupervised_samples)
