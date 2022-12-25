@@ -22,6 +22,14 @@ arg_names = [
         'partition_id',
     ]
 
+folder_path = "data"
+if os.path.exists(folder_path):
+        print("Folder path \"" + folder_path + "\" exists")
+        pass
+else:
+        print("Data folder created")
+        os.makedirs(folder_path)
+
 args = dict(zip(arg_names, sys.argv[1:]))
 
 path_nodes_localstore = args['path_localstore'] + args['graph_id'] + '_attributes_' + args['partition_id']
