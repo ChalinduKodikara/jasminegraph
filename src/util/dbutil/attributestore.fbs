@@ -1,0 +1,17 @@
+// If any changes are done to this schema definition file, regenerate 'attributestore_generated.h' using flatc compiler
+// by running following command and copy generated 'attributestore_generated.h' header file to dbutil directory
+//          cd flatbuffers/
+//          ./flatc --cpp attributestore.fbs
+
+namespace JasmineGraph.AttributeStore;
+
+table AttributeStore {
+    entries:[AttributeStoreEntry];
+}
+
+table AttributeStoreEntry {
+    key:long (key);
+    value:[string];
+}
+
+root_type AttributeStore;

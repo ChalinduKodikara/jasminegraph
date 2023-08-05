@@ -1,0 +1,18 @@
+// If any changes are done to this schema definition file, regenerate 'edgestore_generated.h' using flatc compiler
+// by running following command and copy generated 'edgestore_generated.h' header file to dbutil directory
+//          cd flatbuffers/
+//          ./flatc --cpp edgestore.fbs
+
+namespace JasmineGraph.Edgestore;
+
+table EdgeStore {
+    entries:[EdgeStoreEntry];
+}
+
+table EdgeStoreEntry {
+    key:long (key);
+    value:[long];
+}
+
+root_type EdgeStore;
+
